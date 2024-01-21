@@ -36,7 +36,7 @@ export default function ChatInput({ handleSendMsg }) {
       <form className="input-container" onSubmit={(event) => sendChat(event)}>
         <input
           type="text"
-          placeholder="type your message here"
+          placeholder="Type your message here"
           onChange={(e) => setMsg(e.target.value)}
           value={msg}
         />
@@ -54,9 +54,13 @@ const Container = styled.div`
   grid-template-columns: 5% 95%;
   background-color: #080420;
   padding: 0 2rem;
-  @media screen and (min-width: 720px) and (max-width: 1080px) {
+  border-radius: 25px;
+  width: 95%;
+  margin: 5px auto;
+  @media screen and (max-width: 720px) and (max-width: 1080px) {
     padding: 0 1rem;
     gap: 1rem;
+    border-radius: 0;
   }
   .button-container {
     display: flex;
