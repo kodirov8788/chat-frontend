@@ -60,10 +60,11 @@ export default function Chat() {
     const handleChatChange = (chat) => {
         setCurrentChat(chat);
     };
+    
 
     return (
         <>
-            <Container>
+            <Container >
                 <div className="container">
                     <Contacts
                         contacts={contacts}
@@ -100,7 +101,8 @@ const Container = styled.div`
         display: grid;
         grid-template-columns: 25% 75%;
         @media screen and (max-width: 720px) and (max-width: 1080px) {
-            grid-template-columns: 35% 65%;
+            grid-template-columns: 100% 0;
+            transition: all 0.1s;
         }
     }
 `;

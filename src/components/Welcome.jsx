@@ -35,6 +35,6 @@ const Container = styled.div`
         color: #4e0eff;
     }
     @media screen and (max-width: 720px) {
-        display: block;
+        display: none;
     }
 `;
