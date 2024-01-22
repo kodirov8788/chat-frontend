@@ -6,7 +6,6 @@ export default function Contacts({ contacts, changeChat }) {
     const [currentUserName, setCurrentUserName] = useState(undefined);
     const [currentUserImage, setCurrentUserImage] = useState(undefined);
     const [currentSelected, setCurrentSelected] = useState(undefined);
-    const [open, setOpen] = useState(false);
     useEffect(async () => {
         const data = await JSON.parse(
             localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
@@ -18,7 +17,14 @@ export default function Contacts({ contacts, changeChat }) {
         setCurrentSelected(index);
         changeChat(contact);
     };
-    console.log(open);
+
+    const open = () => {
+        const container = document.querySelector(".container");
+        if (window.matchMedia("(max-width: 700px)").matches) {
+            container.style.gridTemplateColumns = "0 100%";
+        }
+    };
+
     return (
         <>
             {currentUserImage && currentUserImage && (
@@ -35,7 +41,7 @@ export default function Contacts({ contacts, changeChat }) {
                                     }`}
                                     onClick={() => {
                                         changeCurrentChat(index, contact);
-                                        setOpen(false);
+                                        open();
                                     }}
                                 >
                                     <div className="avatar">
