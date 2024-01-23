@@ -5,47 +5,52 @@ import styled from "styled-components";
 import Picker from "emoji-picker-react";
 
 export default function ChatInput({ handleSendMsg }) {
-  const [msg, setMsg] = useState("");
-  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-  const handleEmojiPickerhideShow = () => {
-    setShowEmojiPicker(!showEmojiPicker);
-  };
+    const [msg, setMsg] = useState("");
+    const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+    const handleEmojiPickerhideShow = () => {
+        setShowEmojiPicker(!showEmojiPicker);
+    };
 
-  const handleEmojiClick = (event, emojiObject) => {
-    let message = msg;
-    message += emojiObject.emoji;
-    setMsg(message);
-  };
+    const handleEmojiClick = (event, emojiObject) => {
+        let message = msg;
+        message += emojiObject.emoji;
+        setMsg(message);
+    };
 
-  const sendChat = (event) => {
-    event.preventDefault();
-    if (msg.length > 0) {
-      handleSendMsg(msg);
-      setMsg("");
-    }
-  };
+    const sendChat = (event) => {
+        event.preventDefault();
+        if (msg.length > 0) {
+            handleSendMsg(msg);
+            setMsg("");
+        }
+    };
 
-  return (
-    <Container>
-      <div className="button-container">
-        <div className="emoji">
-          <BsEmojiSmileFill onClick={handleEmojiPickerhideShow} />
-          {showEmojiPicker && <Picker onEmojiClick={handleEmojiClick} />}
-        </div>
-      </div>
-      <form className="input-container" onSubmit={(event) => sendChat(event)}>
-        <input
-          type="text"
-          placeholder="type your message here"
-          onChange={(e) => setMsg(e.target.value)}
-          value={msg}
-        />
-        <button type="submit">
-          <IoMdSend />
-        </button>
-      </form>
-    </Container>
-  );
+    return (
+        <Container>
+            <div className="button-container">
+                <div className="emoji">
+                    <BsEmojiSmileFill onClick={handleEmojiPickerhideShow} />
+                    {showEmojiPicker && (
+                        <Picker onEmojiClick={handleEmojiClick} />
+                    )}
+                </div>
+            </div>
+            <form
+                className="input-container"
+                onSubmit={(event) => sendChat(event)}
+            >
+                <input
+                    type="text"
+                    placeholder="Type your message here"
+                    onChange={(e) => setMsg(e.target.value)}
+                    value={msg}
+                />
+                <button type="submit">
+                    <IoMdSend />
+                </button>
+            </form>
+        </Container>
+    );
 }
 
 const Container = styled.div`
@@ -53,10 +58,15 @@ const Container = styled.div`
   align-items: center;
   grid-template-columns: 5% 95%;
   background-color: #080420;
-  padding: 0 2rem;
-  @media screen and (min-width: 720px) and (max-width: 1080px) {
+  padding: 0rem 2rem;
+  border-radius: 25px;
+  width: 95%;
+  margin: 5px auto;
+  @media screen and (max-width: 720px) and (max-width: 1080px) {
     padding: 0 1rem;
     gap: 1rem;
+    border-radius: 25px 25px;
+    width: 98%;
   }
   .button-container {
     display: flex;
@@ -98,6 +108,11 @@ const Container = styled.div`
       }
     }
   }
+  @media screen and (max-width: 720px) and (max-width: 1080px) {
+    .input-container {
+      width: 95% !important;
+    }
+  }
   .input-container {
     width: 100%;
     border-radius: 2rem;
@@ -129,7 +144,7 @@ const Container = styled.div`
       align-items: center;
       background-color: #9a86f3;
       border: none;
-      @media screen and (min-width: 720px) and (max-width: 1080px) {
+      @media screen and (max-width: 720px) and (max-width: 1080px) {
         padding: 0.3rem 1rem;
         svg {
           font-size: 1rem;
